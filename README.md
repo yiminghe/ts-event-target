@@ -7,14 +7,14 @@ nodejs event target with full typescript type support.
 ```ts
 import { Event, EventTarget} from 'ts-event-target';
 
-class MyEvent extends UserEvent<'my'> {
+class MyEvent extends Event<'my'> {
   data: { x: number } = { x: 0 };
   constructor() {
     super('my');
   }
 }
 
-class MyEvent2 extends UserEvent<'my2'> {
+class MyEvent2 extends Event<'my2'> {
   data: { y: number } = { y: 0 };
   constructor() {
     super('my2');

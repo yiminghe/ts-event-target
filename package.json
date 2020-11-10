@@ -1,10 +1,19 @@
 {
   "name": "ts-event-target",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "files": [
     "lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yiminghe/ts-event-target.git",
+    "web": "https://github.com/yiminghe/ts-event-target"
+  },
+  "bugs": {
+    "url": "http://github.com/yiminghe/ts-event-target/issues/"
+  },
+  "license": "MIT",
   "module": "lib/index.js",
   "exports": {
     "import": "./lib/index.js"
