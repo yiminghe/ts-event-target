@@ -3,5 +3,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "declaration": false
-  }
+  },
+  "exclude": [		
+    "node_modules/"
+  ]
 }
