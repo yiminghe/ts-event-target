@@ -37,7 +37,7 @@ describe('EventTarget', () => {
         expect(e.data.y).toEqual(2);
       });
       let runAll = target.dispatchEvent(event);
-      expect(ret).toEqual([1,2]);
+      expect(ret).toEqual([1, 2]);
       expect(runAll).toEqual(false);
       target.removeEventListener('my', f1);
       ret = [];
@@ -61,7 +61,7 @@ describe('EventTarget', () => {
         ret.push(3);
       });
       let runAll = target.dispatchEvent(event);
-      expect(ret).toEqual([1,2]);
+      expect(ret).toEqual([1, 2]);
       expect(runAll).toEqual(true);
 
       target.removeAllEventListeners('my2');
@@ -71,5 +71,52 @@ describe('EventTarget', () => {
       expect(runAll).toEqual(true);
     }
     expect(target.eventNames()).toEqual(['my']);
+  });
+
+
+  it('allow extends', () => {
+    class ParentEvent extends Event<'parentEvent'>{
+      n = 0;
+      constructor(n:number) {
+        super('parentEvent');
+        this.n = n;
+      }
+    }
+    class ChildEvent extends Event<'childEvent'>{
+      n = 0;
+      constructor(n:number) {
+        super('childEvent');
+        this.n = n;
+      }
+    }
+    type ParentEvents = [
+      ParentEvent
+    ];
+
+    class BaseModel<T extends Event<any>[] = ParentEvents> extends EventTarget<T> {
+    }
+
+    class ChildModel<T extends Event<any>[] = [...ParentEvents, ChildEvent]> extends EventTarget<T> {
+    }
+
+    const ret: number[] = [];
+
+    const baseModel = new BaseModel();
+
+    baseModel.addEventListener('parentEvent', (pe) => {
+      ret.push(pe.n);
+    });
+
+    const childModel = new ChildModel();
+
+    childModel.addEventListener('childEvent', (ce) => {
+      ret.push(ce.n);
+    });
+
+    baseModel.dispatchEvent(new ParentEvent(1));
+
+    childModel.dispatchEvent(new ChildEvent(2));
+
+    expect(ret).toEqual([1, 2]);
   });
 });

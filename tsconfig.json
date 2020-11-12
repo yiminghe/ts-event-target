@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "lib",
-    "module": "ESNext",
+    "module": "commonjs",
     "target": "es5",
     "lib": [
       "es2016",
@@ -12,7 +12,7 @@
     "noImplicitAny": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "declaration": true,
+    "declaration": false,
     "strictFunctionTypes": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
@@ -27,7 +27,6 @@
     "stories/"
   ],
   "exclude": [		
-    "node_modules/",
-    "src/__tests__/"
+    "node_modules/"
   ]
 }
