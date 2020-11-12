@@ -77,14 +77,14 @@ describe('EventTarget', () => {
   it('allow extends', () => {
     class ParentEvent extends Event<'parentEvent'>{
       n = 0;
-      constructor(n:number) {
+      constructor(n: number) {
         super('parentEvent');
         this.n = n;
       }
     }
     class ChildEvent extends Event<'childEvent'>{
       n = 0;
-      constructor(n:number) {
+      constructor(n: number) {
         super('childEvent');
         this.n = n;
       }
@@ -96,7 +96,13 @@ describe('EventTarget', () => {
     class BaseModel<T extends Event<any>[] = ParentEvents> extends EventTarget<T> {
     }
 
-    class ChildModel<T extends Event<any>[] = [...ParentEvents, ChildEvent]> extends EventTarget<T> {
+
+    type ChildEvents = [
+      ...ParentEvents,
+      ChildEvent
+    ]
+
+    class ChildModel<T extends Event<any>[] = ChildEvents> extends BaseModel<T> {
     }
 
     const ret: number[] = [];
