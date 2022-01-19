@@ -21,7 +21,7 @@ class MyEvent2 extends Event<'my2'> {
   }
 }
 
-const target = new EventTarget<[MyEvent,MyEvents]>();
+const target = new EventTarget<[MyEvent, MyEvent2]>();
 
 target.addEventListener('my',(e)=>{
 

@@ -73,6 +73,29 @@ describe('EventTarget', () => {
     expect(target.eventNames()).toEqual(['my']);
   });
 
+  it('can remove other listeners in handler', () => {
+    const target = new EventTarget();
+    const log: number[] = [];
+
+    function handler() {
+      log.push(1);
+      target.removeEventListener('foo', handler2);
+    }
+    function handler2() {
+      log.push(2);
+    }
+    function handler3() {
+      log.push(3);
+    }
+
+    target.addEventListener('foo', handler);
+    target.addEventListener('foo', handler2);
+    target.addEventListener('foo', handler3);
+
+    target.dispatchEvent(new Event('foo'));
+
+    expect(log).toEqual([1,3]);
+  });
 
   it('allow extends', () => {
     class ParentEvent extends Event<'parentEvent'>{

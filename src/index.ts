@@ -133,6 +133,9 @@ class ListenerNode<EventType> {
   capture?: boolean;
   passive?: boolean;
   callback: (event: EventType) => any;
+
+  removed = false;
+
   constructor(previous: ListenerNode<EventType> | ListenerRoot<EventType>, listener: UserListener<EventType>, once?: boolean, capture?: boolean, passive?: boolean) {
     this.next = undefined;
     if (previous !== undefined) previous.next = this;
@@ -155,6 +158,7 @@ class ListenerNode<EventType> {
   remove() {
     if (this.previous !== undefined) this.previous.next = this.next;
     if (this.next !== undefined) this.next.previous = this.previous;
+    this.removed = true;
   }
 }
 
@@ -290,6 +294,13 @@ export class EventTarget<Events extends Array<Event<any>>, K extends Events[numb
       (handler.passive || event[kStop] !== true)) {
       // Cache the next item in case this iteration removes the current one
       next = handler.next;
+
+      if (handler.removed) {
+        // Deal with the case an event is removed while event handlers are
+        // Being processed (removeEventListener called from a listener)
+        handler = next;
+        continue;
+      }
 
       if (handler.once) {
         handler.remove();
