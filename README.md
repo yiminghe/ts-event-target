@@ -1,5 +1,9 @@
 ## ts-event-target
 
+[![NPM version](https://badge.fury.io/js/ts-event-target.png)](http://badge.fury.io/js/ts-event-target)
+[![NPM downloads](http://img.shields.io/npm/dm/ts-event-target.svg)](https://npmjs.org/package/ts-event-target)
+[![Build Status](https://app.travis-ci.com/yiminghe/ts-event-target.svg?branch=master)](https://app.travis-ci.com/github/yiminghe/ts-event-target)
+
 nodejs event target with full typescript type support.
 
 ### usage
