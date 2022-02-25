@@ -101,3 +101,7 @@ export declare class EventTarget<Events extends Array<Event<any>>, K extends Eve
     removeAllEventListeners<T extends K>(type: T): this;
 }
 ```
+
+### type coverage
+
+818 / 848 96.46%
