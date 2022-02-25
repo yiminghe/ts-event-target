@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "lib",
-    "module": "commonjs",
     "target": "es5",
     "lib": [
       "es2016",

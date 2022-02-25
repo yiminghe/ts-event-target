@@ -38,3 +38,4 @@ pkg/
 node_modules/
 
 lib/
+/es/
