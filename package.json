@@ -32,6 +32,6 @@
     "pub": "yarn build && npm publish && git push",
     "clean": "rm -rf lib es",
     "build": "yarn clean && tsc --build tsconfig.build.json && tsc --build tsconfig.cjs.build.json",
-    "test": "yarn clean && tsc && jest --roots lib"
+    "test": "yarn clean && tsc --build tsconfig.test.json && jest --roots lib"
   }
 }
