@@ -16,7 +16,7 @@
   "license": "MIT",
   "types": "es/index.d.ts",
   "module": "es/index.js",
-  "main":"lib/index.js",
+  "main": "lib/index.js",
   "devDependencies": {
     "@definitelytyped/dtslint": "^0.0.110",
     "@types/jest": "^26.0.15",
@@ -24,9 +24,9 @@
     "type-coverage": "^2.21.0",
     "typescript": "^4.0.5"
   },
-  "packageManager": "yarn@3.1.1",
+  "packageManager": "yarn@3.2.2",
   "scripts": {
-    "type-coverage":"type-coverage",
+    "type-coverage": "type-coverage",
     "dtslint": "dtslint types",
     "pub": "yarn build && npm publish && git push",
     "clean": "rm -rf lib es",
